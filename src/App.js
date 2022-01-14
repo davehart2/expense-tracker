@@ -23,7 +23,7 @@ const App = () => {
           <Main />
         </Grid>
         <Grid item xs={12} sm={3}>
-          <Details title="Expenses" />
+          <Details title="Expense" />
         </Grid>
       </Grid>
     </div>
