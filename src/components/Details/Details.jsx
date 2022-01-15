@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardHeader, CardContent, Typography } from "@material-ui/core";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import useStyles from "./styles";
 import useTransactions from "../../useTransactions";
 
@@ -15,7 +15,7 @@ const Details = ({ title }) => {
       <CardHeader title={title} />
       <CardContent>
         <Typography variant="h5">${total}</Typography>
-        <Doughnut data={chartData} />
+        <Pie data={chartData} />
       </CardContent>
     </Card>
   );
