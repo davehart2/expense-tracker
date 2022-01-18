@@ -18,6 +18,7 @@ import {
 import formatDate from "../../../utilities/formatDate";
 import { useSpeechContext } from "@speechly/react-client";
 import useStyles from "./styles";
+import CustomSnackbar from "../../Snackbar/Snackbar";
 
 const initialState = {
   amount: "",
@@ -31,6 +32,7 @@ const Form = () => {
   const [formData, setFormData] = useState(initialState);
   const { addTransaction } = useContext(BudgetTrackerContext);
   const { segment } = useSpeechContext();
+  const [open, setOpen] = useState(false);
   const createTransaction = () => {
     if (Number.isNaN(Number(formData.amount)) || !formData.date.includes("-"))
       return;
@@ -39,6 +41,7 @@ const Form = () => {
       amount: Number(formData.amount),
       id: uuidv4(),
     };
+    setOpen(true);
     addTransaction(transaction);
     setFormData(initialState);
   };
@@ -102,6 +105,7 @@ const Form = () => {
     formData.type === "Expense" ? expenseCategories : incomeCategories;
   return (
     <Grid container spacing={2}>
+      <CustomSnackbar open={open} setOpen={setOpen} />
       <Grid item xs={12}>
         <Typography variant="subtitle2" align="center" gutterBottom>
           {segment && <>{segment.words.map((w) => w.value).join(" ")}</>}
